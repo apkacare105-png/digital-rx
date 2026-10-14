@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+/* Neumorphic (soft UI) theme for the app screens. The prescription sheet / PDF / print stay flat white. */
+:root {
+  --neu-bg: #e6ebf2;
+  --neu-light: #ffffff;
+  --neu-dark: #c3cad6;
+  --neu-text: #1e293b;
+}
+html, body { background: var(--neu-bg); color: var(--neu-text); }
+
+.neu-raised { background: var(--neu-bg); box-shadow: 8px 8px 16px var(--neu-dark), -8px -8px 16px var(--neu-light); }
+.neu-raised-sm { background: var(--neu-bg); box-shadow: 4px 4px 8px var(--neu-dark), -4px -4px 8px var(--neu-light); }
+.neu-inset { background: var(--neu-bg); box-shadow: inset 4px 4px 8px var(--neu-dark), inset -4px -4px 8px var(--neu-light); }
+.neu-press:active { box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light); }
+
+/* accessible keyboard focus everywhere */
+:where(a, button, input, select, textarea):focus-visible { outline: 2px solid #0d9488; outline-offset: 2px; }
+
+@media print {
+  @page { margin: 12mm; }
+  html, body { background: #fff !important; }
+  .no-print { display: none !important; }
+  .print-sheet { box-shadow: none !important; border: none !important; padding: 0 !important; }
+}

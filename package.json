@@ -1,0 +1,14 @@
+{
+  "name": "digital-rx",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Digital Prescription Management System (MERN): doctor app, pharmacy view, admin panel",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "seed": "npm --prefix server run seed",
+    "import-medicines": "npm --prefix server run import-medicines"
+  },
+  "engines": { "node": ">=18" }
+}

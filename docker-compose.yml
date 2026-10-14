@@ -1,0 +1,30 @@
+# Start:   docker compose up -d --build
+# First run (create admin + load medicines):
+#   docker compose exec app node seeds/seed.js
+#   docker compose exec app node scripts/import-medicines.js
+# Needs a file named  server/.env  (copy server/.env.production.example and fill it in).
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    env_file: ./server/.env
+    environment:
+      MONGO_URI: mongodb://mongo:27017/digital_rx   # overrides the value in .env
+      DNS_SERVERS: ""                               # not needed inside Docker
+      # COOKIE_SECURE: "false"   # uncomment ONLY to test over plain http://localhost
+    ports:
+      - "5000:5000"
+    volumes:
+      - uploads:/app/server/uploads
+
+volumes:
+  mongo_data:
+  uploads:
